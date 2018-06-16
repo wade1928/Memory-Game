@@ -3,6 +3,7 @@
  */
 
 let arrayCards = [];
+let openCards = [];
 addToArray();
 
 function addToArray() {
@@ -55,19 +56,31 @@ for(let i = 0; i < arrayCards.length; i++){
 }
 }
 
+ /*set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)*/
 $('.card').on('click', function() {
 	$(this).addClass('open');
 	$(this).addClass('show');
+	openedCards();
 })
- /*set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)*/
+
+/*- add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)*/
+function openedCards() {
+	for(let i = 0; i < arrayCards.length; i++){
+	if(arrayCards[i].classList.contains('open')){
+		openCards.push(arrayCards[i]);
+}
+}
+}
 
 
-/*
- * 
 
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+
+ /*
  *  - if the list already has another card, check to see if the two cards match
+
+ */
+ /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)

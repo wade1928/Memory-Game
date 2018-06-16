@@ -21,20 +21,41 @@ function addToArray() {
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-	var currentIndex = array.length,
+function shuffle(arrayCards) {
+	var currentIndex = arrayCards.length,
 		temporaryValue, randomIndex;
 
 	while (currentIndex !== 0) {
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
+		temporaryValue = arrayCards[currentIndex];
+		arrayCards[currentIndex] = arrayCards[randomIndex];
+		arrayCards[randomIndex] = temporaryValue;
 	}
 
-	return array;
+	return arrayCards;
 }
+
+
+function resetCards(arrayCards){
+for(let i = 0; i < arrayCards.length; i++){
+	if(arrayCards[i].classList.contains('show')){
+		arrayCards[i].classList.remove('show')}
+		if(arrayCards[i].classList.contains('open')){
+		arrayCards[i].classList.remove('open')}
+				if(arrayCards[i].classList.contains('match')){
+		arrayCards[i].classList.remove('match')}
+}
+
+for(let i = 0; i < arrayCards.length; i++){
+	let currentClass = document.getElementsByClassName('card');
+	let currentArray = arrayCards;
+	currentClass[i].innerHTML = currentArray[i].innerHTML;
+}
+}
+
+ 
+
 
 
 /*

@@ -15,6 +15,7 @@ $(document).ready(function() {
 // * Create a list that holds all of your cards
 let listCards = [];
 let openedCards = [];
+let clickCounter = 0;
 let moveCounter = 0;
 
 //Event Listener for 'card' click
@@ -77,9 +78,13 @@ function checkForMatch(array, card) {
 }
 
 function addMoves() {
-  moveCounter++;
+  clickCounter++;
+  if (clickCounter % 2 === 0) {
+    moveCounter++;
+  }
+
   $('.moves').text(moveCounter);
-}
+};
 
 /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)

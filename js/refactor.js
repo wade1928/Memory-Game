@@ -73,15 +73,17 @@ function addOpen(array, card) {
 
 //- if the list already has another card, check to see if the two cards match
 function checkForMatch(array, card) {
-  for (let i = 0; i < openedCards.length - 1; i++) {
-    let classL1 = openedCards[openedCards.length - 2].firstElementChild.classList[1];
-    let classL2 = card.firstElementChild.classList[1];
-    console.log(classL1, classL2);
-    if (classL1 === classL2) {
-      card.classList.add('match');
-      openedCards[i].classList.add('match');
-    } else {
-      notAMatch();
+  if (clickCounter % 2 === 0) {
+    for (let i = 0; i < openedCards.length - 1; i++) {
+      let classL1 = openedCards[openedCards.length - 2].firstElementChild.classList[1];
+      let classL2 = card.firstElementChild.classList[1];
+      console.log(classL1, classL2);
+      if (classL1 === classL2) {
+        card.classList.add('match');
+        openedCards[i].classList.add('match');
+      } else {
+        notAMatch();
+      }
     }
   }
 };

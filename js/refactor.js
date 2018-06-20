@@ -73,7 +73,6 @@ function addOpen(array, card) {
 
 //- if the list already has another card, check to see if the two cards match
 function checkForMatch(array, card) {
-  console.log(newCard);
   console.log(openedCards);
 }
 
@@ -82,6 +81,10 @@ function addMoves() {
   if (clickCounter % 2 === 0) {
     moveCounter++;
   }
+
+  if (moveCounter === 1) {
+    document.getElementById('moves').textContent = 'Move';
+  };
 
   $('.moves').text(moveCounter);
 };

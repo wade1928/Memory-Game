@@ -77,17 +77,41 @@ function checkForMatch(array, card) {
     for (let i = 0; i < openedCards.length - 1; i++) {
       let classL1 = openedCards[openedCards.length - 2].firstElementChild.classList[1];
       let classL2 = card.firstElementChild.classList[1];
-      console.log(classL1, classL2);
+      //if the cards do match, lock the cards in the open position
       if (classL1 === classL2) {
         card.classList.add('match');
         openedCards[i].classList.add('match');
+
       } else {
-        notAMatch();
+        openedCards[openedCards.length - 1].classList.add('redBorder');
+        openedCards[openedCards.length - 2].classList.add('redBorder');
+
+        let timeoutID;
+
+        function delayedFunction() {
+          timeoutID = window.setTimeout(notAMatch, 1500, card, openedCards);
+        };
+        delayedFunction();
+        //notAMatch(card, openedCards[i]);
       }
     }
   }
 };
 
+//if the cards do not match, remove the cards from the list and hide the card's symbol
+
+function notAMatch(card1, card2) {
+
+  $(card1).removeClass('open');
+  $(card1).removeClass('show');
+  $(card2).removeClass('open');
+  $(card2).removeClass('show');
+  $(card1).removeClass('redBorder');
+  $(card2).removeClass('redBorder');
+  openedCards.pop();
+  openedCards.pop();
+};
+//*    + increment the move counter and display it on the page
 function addMoves() {
   clickCounter++;
   if (clickCounter % 2 === 0) {
@@ -106,8 +130,5 @@ function addMoves() {
 
 
 /*
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */

@@ -73,8 +73,18 @@ function addOpen(array, card) {
 
 //- if the list already has another card, check to see if the two cards match
 function checkForMatch(array, card) {
-  console.log(openedCards);
-}
+  for (let i = 0; i < openedCards.length - 1; i++) {
+    let classL1 = openedCards[openedCards.length - 2].firstElementChild.classList[1];
+    let classL2 = card.firstElementChild.classList[1];
+    console.log(classL1, classL2);
+    if (classL1 === classL2) {
+      card.classList.add('match');
+      openedCards[i].classList.add('match');
+    } else {
+      notAMatch();
+    }
+  }
+};
 
 function addMoves() {
   clickCounter++;
@@ -84,10 +94,14 @@ function addMoves() {
 
   if (moveCounter === 1) {
     document.getElementById('moves').textContent = 'Move';
-  };
+  } else {
+    document.getElementById('moves').textContent = 'Moves';
+  }
 
   $('.moves').text(moveCounter);
 };
+
+
 
 /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)

@@ -1,22 +1,21 @@
 //getList();
 //shuffle(listCards);
 //getDomCards(listCards);
-
-$(document).ready(function() {
-  /* for (let i = 0; i < 17; i++) {
-      $('.card').addClass('open show')
-    }*/
-  getList();
-
-  //shuffle(listCards);
-  getDomCards(listCards);
-});
-
 // * Create a list that holds all of your cards
 let listCards = [];
 let openedCards = [];
 let clickCounter = 0;
 let moveCounter = 0;
+let matches = 0;
+
+$(document).ready(function() {
+  /*for (let i = 0; i < 17; i++) {
+    $('.card').addClass('open show');
+  };*/
+
+  shuffleDeck();
+  reset();
+});
 
 //Event Listener for 'card' click
 $('.card').on('click', function() {
@@ -24,20 +23,20 @@ $('.card').on('click', function() {
   showCard(this);
 });
 
-function getList() {
+/*function getList() {
   let cards = document.getElementsByClassName('card');
   for (let i = 0; i < cards.length; i++) {
     listCards.push(cards[i]);
-  }
-
-  return listCards;
-};
+    console.log(listCards);
+  };
+  //shuffle(listCards);
+};*/
 
 //* shuffle the list of cards using the provided "shuffle" method below
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue, randomIndex;
-  moveCounter = 0;
+
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -45,18 +44,21 @@ function shuffle(array) {
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
+
   }
 
   return array;
 }
 
 //* Display the cards on the page
-function getDomCards(array) {
-  let domCards = document.getElementsByClassName('card');
-  for (let i = 0; i < array.length; i++) {
-    domCards[i].firstElementChild.innerHTML = listCards[i].firstElementChild.innerHTML;
+/*function getDomCards(array) {
+  domCards = document.querySelectorAll('i');
+  let classListCards = ;
+  for (let i = 0; i < domCards.length; i++) {
+    domCards[i].classList = array[i].firstElementChild.classList;
   }
-}
+}*/
+//-----------------------//
 
 // *  - display the card's symbol
 function showCard(card) {
@@ -80,7 +82,14 @@ function checkForMatch(array, card) {
       //if the cards do match, lock the cards in the open position
       if (classL1 === classL2) {
         card.classList.add('match');
+        card.classList.remove('open');
+        card.classList.remove('show');
         openedCards[i].classList.add('match');
+        openedCards[i].classList.remove('open');
+        openedCards[i].classList.remove('show');
+        openCards = openedCards.splice(openedCards.length - 2, 2);
+        matches++;
+        checkWin();
 
       } else {
         openedCards[openedCards.length - 1].classList.add('redBorder');
@@ -108,8 +117,7 @@ function notAMatch(card1, card2) {
   $(card2).removeClass('show');
   $(card1).removeClass('redBorder');
   $(card2).removeClass('redBorder');
-  openedCards.pop();
-  openedCards.pop();
+  openCards = openedCards.splice(openedCards.length - 2, 2);
 };
 //*    + increment the move counter and display it on the page
 function addMoves() {
@@ -127,8 +135,38 @@ function addMoves() {
   $('.moves').text(moveCounter);
 };
 
+function checkWin() {
+  if (matches === 8) {
+    alert('you won!');
+    reset();
+  }
+};
+
+const deck = document.querySelector('.deck');
 
 
-/*
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+function shuffleDeck() {
+  console.log(deck);
+  const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
+  console.log(cardsToShuffle);
+  shuffledCards = shuffle(cardsToShuffle);
+  console.log(shuffledCards);
+  for (card of shuffledCards) {
+    deck.appendChild(card);
+  }
+};
+
+function reset() {
+  listCards = [];
+  openedCards = [];
+  clickCounter = 0;
+  moveCounter = 0;
+  matches = 0;
+};
+
+
+
+
+
+
+//   *    + if all cards have matched, display a message with the final score

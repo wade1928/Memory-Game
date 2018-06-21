@@ -92,13 +92,16 @@ function checkForMatch(array, card) {
         checkWin();
 
       } else {
-        openedCards[openedCards.length - 1].classList.add('redBorder');
-        openedCards[openedCards.length - 2].classList.add('redBorder');
+        $('body').css('pointer-events', 'none');
+        openedCards[openedCards.length - 1].classList.add('noMatch');
+        openedCards[openedCards.length - 2].classList.add('noMatch');
 
         let timeoutID;
+        let timeoutID2;
 
         function delayedFunction() {
-          timeoutID = window.setTimeout(notAMatch, 1500, card, openedCards);
+          timeoutID = window.setTimeout(notAMatch, 1000, card, openedCards);
+          timeoutID = window.setTimeout(enableClicks, 1200);
         };
         delayedFunction();
         //notAMatch(card, openedCards[i]);
@@ -115,10 +118,14 @@ function notAMatch(card1, card2) {
   $(card1).removeClass('show');
   $(card2).removeClass('open');
   $(card2).removeClass('show');
-  $(card1).removeClass('redBorder');
-  $(card2).removeClass('redBorder');
+  $(card1).removeClass('noMatch');
+  $(card2).removeClass('noMatch');
   openCards = openedCards.splice(openedCards.length - 2, 2);
 };
+
+function enableClicks() {
+  $('body').css('pointer-events', 'auto');
+}
 //*    + increment the move counter and display it on the page
 function addMoves() {
   clickCounter++;

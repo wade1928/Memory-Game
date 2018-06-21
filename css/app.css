@@ -79,8 +79,10 @@ h1 {
   font-size: 33px;
 }
 
-.redBorder {
-  border: solid 2px red;
+.deck .card.noMatch {
+  cursor: default;
+  background: red;
+  font-size: 33px;
 }
 
 .greenBorder {

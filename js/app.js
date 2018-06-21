@@ -55,7 +55,7 @@ function resetCards(arrayCards) {
   for (let i = 0; i < arrayCards.length; i++) {
     let currentClass = document.getElementsByClassName('card');
     let currentArray = arrayCards;
-    currentClass[i].firstChild.innerHTML = currentArray[i].firstChild.innerHTML;
+    currentClass[i].innerHTML = currentArray[i].innerHTML;
   }
   return arrayCards;
 }

@@ -12,17 +12,15 @@ $(document).ready(function() {
   /*for (let i = 0; i < 17; i++) {
     $('.card').addClass('open show');
   };*/
+  startTimer();
   shuffleDeck();
   reset();
-
-
 });
 
 //Event Listener for 'card' click
 $('.card').on('click', function() {
   addMoves();
   showCard(this);
-  scoreKeeper();
 });
 
 /*function getList() {
@@ -147,6 +145,7 @@ function addMoves() {
 function checkWin() {
   if (matches === 8) {
     alert('you won!');
+    stopTimer();
     reset();
   }
 };
@@ -173,20 +172,18 @@ function reset() {
   matches = 0;
 };
 
-function scoreKeeper() {
-  if (moveCounter === 12) {
-    $('#star5').remove();
-  } else if (moveCounter === 15) {
-    $('#star4').remove();
-  } else if (moveCounter === 18) {
-    $('#star3').remove();
-  } else if (moveCounter === 20) {
-    $('#star2').remove();
-  }
+function startTimer() {
+  var seconds = 0;
+  timer = setInterval(function() {
+    seconds++;
+    document.getElementById("seconds").innerText = seconds % 60;
+    document.getElementById("minutes").innerText = parseInt(seconds / 60);
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
 };
-
-
-
 
 
 

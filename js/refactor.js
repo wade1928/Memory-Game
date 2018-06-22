@@ -12,15 +12,24 @@ $(document).ready(function() {
   /*for (let i = 0; i < 17; i++) {
     $('.card').addClass('open show');
   };*/
-  startTimer();
-  shuffleDeck();
   reset();
+  shuffleDeck();
+  startTimer();
 });
 
 //Event Listener for 'card' click
 $('.card').on('click', function() {
   addMoves();
   showCard(this);
+});
+
+$('.restart').on('click', function() {
+  $('.card').removeClass('open');
+  $('.card').removeClass('show');
+  $('.card').removeClass('match');
+  reset();
+  shuffleDeck();
+  startTimer();
 });
 
 /*function getList() {
@@ -184,6 +193,8 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timer);
 };
+
+
 
 
 

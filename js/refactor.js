@@ -7,6 +7,9 @@ let openedCards = [];
 let clickCounter = 0;
 let moveCounter = 0;
 let matches = 0;
+let modal = document.getElementById('myModal');
+let seconds = 0;
+let minutes = 0;
 
 $(document).ready(function() {
   /*for (let i = 0; i < 17; i++) {
@@ -27,6 +30,7 @@ $('.restart').on('click', function() {
   $('.card').removeClass('open');
   $('.card').removeClass('show');
   $('.card').removeClass('match');
+  stopTimer();
   reset();
   shuffleDeck();
   startTimer();
@@ -153,9 +157,9 @@ function addMoves() {
 
 function checkWin() {
   if (matches === 8) {
-    alert('you won!');
     stopTimer();
     reset();
+    displayModal();
   }
 };
 
@@ -182,10 +186,15 @@ function reset() {
 };
 
 function startTimer() {
-  var seconds = 0;
+  seconds = 0;
+  minutes = 0;
   timer = setInterval(function() {
     seconds++;
-    document.getElementById("seconds").innerText = seconds % 60;
+    if (seconds < 10) {
+      document.getElementById("seconds").innerText = ':0' + seconds % 60;
+    } else {
+      document.getElementById("seconds").innerText = ':' + seconds % 60;
+    }
     document.getElementById("minutes").innerText = parseInt(seconds / 60);
   }, 1000);
 }
@@ -193,6 +202,31 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timer);
 };
+
+function displayModal() {
+  modal.style.display = "block";
+  $('#time').text(minutes + ':' + seconds);
+
+}
+
+$('#yes').on('click', function() {
+  modal.style.display = "none";
+  $('.card').removeClass('open');
+  $('.card').removeClass('show');
+  $('.card').removeClass('match');
+  stopTimer();
+  reset();
+  shuffleDeck();
+  startTimer();
+})
+
+$('#no').on('click', function() {
+  modal.style.display = "none";
+});
+
+
+
+
 
 
 

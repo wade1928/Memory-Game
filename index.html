@@ -12,23 +12,54 @@
 </head>
 
 <body>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
 
-  <div class="container">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Congratulations!</h2>
+      </div>
+      <div class="modal-body">
+        <ul id='score-list'>
+          <li>
+            <h3>Time: <span id='time'></span></h3></li>
+          <li>
+            <h3 id='score'>Score:</h3></li>
+          <li>
+            <h3 id='stars'>Stars:</h3></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <h3>Would you like to play again?</h3>
+        <button id='yes'>Yes</button>
+        <button id='no'>No</button>
+      </div>
+    </div>
+
+  </div>
+  <div class='container'>
     <header>
       <h1>Matching Game</h1>
     </header>
 
     <section class="score-panel">
-      <span id="minutes"></span>
-      <span id="seconds"></span>
-      <ul class="stars">
-        <li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>
-      </ul>
+      <div class='time'>
+        <span>Time: </span>
+        <span id="minutes">0</span>
+        <span id="seconds">:00</span>
+      </div>
+      <div class='starsDiv'>
+        <ul class="stars">
+          <li><i class="fa fa-star"></i></li>
+          <li><i class="fa fa-star"></i></li>
+          <li><i class="fa fa-star"></i></li>
+          <li><i class="fa fa-star"></i></li>
+          <li><i class="fa fa-star"></i></li>
+        </ul>
 
-      <span class="moves">0</span> <span id='moves'>Moves</span>
-
+        <span class="moves">0</span> <span id='moves'>Moves</span>
+      </div>
       <div class="restart">
         Reset
         <i class="fa fa-repeat"></i>

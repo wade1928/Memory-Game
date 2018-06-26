@@ -28,6 +28,8 @@ $(document).ready(function() {
 $('.card').on('click', function() {
   addMoves();
   showCard(this);
+
+
 });
 
 $('.restart').on('click', function() {
@@ -93,11 +95,28 @@ function addOpen(array, card) {
 //- if the list already has another card, check to see if the two cards match
 function checkForMatch(array, card) {
   if (clickCounter % 2 === 0) {
+    console.log(card.id);
     for (let i = 0; i < openedCards.length - 1; i++) {
       let classL1 = openedCards[openedCards.length - 2].firstElementChild.classList[1];
       let classL2 = card.firstElementChild.classList[1];
+      console.log(openedCards[openedCards.length - 2].id);
+      console.log(card.id);
+      if (openedCards[openedCards.length - 2].id === card.id) {
+        $('body').css('pointer-events', 'none');
+        openedCards[openedCards.length - 1].classList.add('noMatch');
+        openedCards[openedCards.length - 2].classList.add('noMatch');
+
+        let timeoutID;
+        let timeoutID2;
+
+        function delayedFunction() {
+          timeoutID = window.setTimeout(notAMatch, 600, card, openedCards);
+          timeoutID = window.setTimeout(enableClicks, 700);
+        };
+        delayedFunction();
+      }
       //if the cards do match, lock the cards in the open position
-      if (classL1 === classL2) {
+      else if (classL1 === classL2) {
         card.classList.add('match');
         card.classList.remove('open');
         card.classList.remove('show');

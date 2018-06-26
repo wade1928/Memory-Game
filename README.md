@@ -1,20 +1,12 @@
-# Memory Game Project
-
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+# Ryan's Memory Game
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is a simple memory matching game.  If two cards are opened that match, the cards are no longer accessible.  If the two cards you open do not match, the cards 'close' and you continue with your life (See! Very simple).  When are cards are matched, a modal displays showing you your score and how many stars you earned.  The score is based on number of moves you make.  Openeing two cards counts as 1 move.  The number of stars is based on the time it takes to match all cards.  
 
-To get started, open `js/app.js` and start building out the app's functionality
+To play, just go to https://wade1928.github.io/Memory-Game/.  Beware! The timer starts as soon as the page opens, or if you decide to restart, as soon as the page refreshes.  Good luck!
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
-## Contributing
+## Future Enhancements
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Currently, the score only decrements by 10.  Don't worry though, a future enhance will make the scoring system a lot more dynamic.  Also in the future, high scores will be displayed and kept in local storage until you decide to get rid of them.  

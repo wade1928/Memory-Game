@@ -25,9 +25,9 @@
           <li>
             <h3>Time: <span id='time'></span></h3></li>
           <li>
-            <h3 id='score'>Score:</h3></li>
+            <h3>Score: <span id='score'></span></h3></li>
           <li>
-            <h3 id='stars'>Stars:</h3></li>
+            <h3>Stars: <span id='stars'></span></h3></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -50,11 +50,11 @@
         <span id="seconds">:00</span>
       </div>
       <div class='starsDiv'>
-        <ul class="stars">
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
+        <ul class="stars" id='starsCount'>
+          <li id='star1'><i class="fa fa-star"></i></li>
+          <li id='star2'><i class="fa fa-star"></i></li>
+          <li id='star3'><i class="fa fa-star"></i></li>
+          <li id='star4'><i class="fa fa-star"></i></li>
           <li><i class="fa fa-star"></i></li>
         </ul>
 
@@ -67,7 +67,7 @@
     </section>
 
     <ul class="deck">
-      <li class="card">
+      <li class="card" id='d1'>
         <i class="fa fa-diamond"></i>
       </li>
       <li class="card">
@@ -91,7 +91,7 @@
       <li class="card">
         <i class="fa fa-bicycle"></i>
       </li>
-      <li class="card">
+      <li class="card" id='d2'>
         <i class="fa fa-diamond"></i>
       </li>
       <li class="card">

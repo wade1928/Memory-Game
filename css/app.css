@@ -222,6 +222,18 @@ h1 {
   display: inline-block;
 }
 
+.time {
+  text-align: left;
+}
+
+.score {
+  text-align: center;
+}
+
+.stars {
+  text-align: right;
+}
+
 #yes, #no {
   height: 48px;
   width: 48px;
@@ -236,4 +248,14 @@ h1 {
   border-style: solid;
   border-radius: 5px;
   padding: 5px;
+  cursor: pointer;
+}
+
+#time, #score, #stars {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#score-list {
+  webkit-padding-start: 0px;
 }

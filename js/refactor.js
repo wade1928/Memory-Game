@@ -10,13 +10,17 @@ let matches = 0;
 let modal = document.getElementById('myModal');
 let seconds = 0;
 let minutes = 0;
+let score = 100;
+let count = 5;
+let arrayOfStars = Array.from(document.getElementById('starsCount').children);
 
 $(document).ready(function() {
   /*for (let i = 0; i < 17; i++) {
     $('.card').addClass('open show');
   };*/
-  reset();
+
   shuffleDeck();
+  reset();
   startTimer();
 });
 
@@ -31,8 +35,8 @@ $('.restart').on('click', function() {
   $('.card').removeClass('show');
   $('.card').removeClass('match');
   stopTimer();
-  reset();
   shuffleDeck();
+  reset();
   startTimer();
 });
 
@@ -113,8 +117,8 @@ function checkForMatch(array, card) {
         let timeoutID2;
 
         function delayedFunction() {
-          timeoutID = window.setTimeout(notAMatch, 1000, card, openedCards);
-          timeoutID = window.setTimeout(enableClicks, 1200);
+          timeoutID = window.setTimeout(notAMatch, 600, card, openedCards);
+          timeoutID = window.setTimeout(enableClicks, 700);
         };
         delayedFunction();
         //notAMatch(card, openedCards[i]);
@@ -144,6 +148,7 @@ function addMoves() {
   clickCounter++;
   if (clickCounter % 2 === 0) {
     moveCounter++;
+    checkStars();
   }
 
   if (moveCounter === 1) {
@@ -158,7 +163,7 @@ function addMoves() {
 function checkWin() {
   if (matches === 8) {
     stopTimer();
-    reset();
+    getScore();
     displayModal();
   }
 };
@@ -182,7 +187,9 @@ function reset() {
   openedCards = [];
   clickCounter = 0;
   moveCounter = 0;
+  $('.moves').text(0);
   matches = 0;
+  score = 100;
 };
 
 function startTimer() {
@@ -204,8 +211,11 @@ function stopTimer() {
 };
 
 function displayModal() {
+  getStars();
   modal.style.display = "block";
   $('#time').text(minutes + ':' + seconds);
+  $('#score').text(score);
+  $('#stars').text(count);
 
 }
 
@@ -215,6 +225,7 @@ $('#yes').on('click', function() {
   $('.card').removeClass('show');
   $('.card').removeClass('match');
   stopTimer();
+  resetStars();
   reset();
   shuffleDeck();
   startTimer();
@@ -224,6 +235,51 @@ $('#no').on('click', function() {
   modal.style.display = "none";
 });
 
+function checkStars() {
+  if (moveCounter === 14) {
+    $('#star1').css('display', 'none');
+    score -= 10;
+  } else if (moveCounter === 16) {
+    $('#star2').css('display', 'none');
+    score -= 10;
+  } else if (moveCounter === 18) {
+    $('#star3').css('display', 'none');
+    score -= 10;
+  } else if (moveCounter === 20) {
+    $('#star4').css('display', 'none');
+    score -= 10;
+  }
+}
+
+function getScore() {
+  if (seconds > 45) {
+    score -= 10;
+  } else if (seconds === 40) {
+    score -= 10;
+  } else if (seconds === 35) {
+    score -= 10;
+  } else if (seconds === 30) {
+    score -= 10;
+  }
+}
+
+function getStars() {
+  for (let i = 0; i < arrayOfStars.length; i++) {
+    if (arrayOfStars[i].style.display === 'none') {
+      count--;
+    }
+    console.log(count);
+  }
+}
+
+function resetStars() {
+  for (let i = 0; i < arrayOfStars.length; i++) {
+    if (arrayOfStars[i].style.display === 'none') {
+      arrayOfStars[i].style.display = 'inline-block';
+    }
+  }
+  count = 5;
+}
 
 
 

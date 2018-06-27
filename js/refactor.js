@@ -32,6 +32,7 @@ $('.restart').on('click', function() {
   stopTimer();
   shuffleDeck();
   reset();
+  resetStars();
 });
 
 //* shuffle the list of cards using the provided "shuffle" method below

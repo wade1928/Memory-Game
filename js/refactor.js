@@ -13,11 +13,13 @@ let arrayOfStars = Array.from(document.getElementById('starsCount').children);
 $(document).ready(function() {
   shuffleDeck();
   reset();
-  startTimer();
 });
 
 //Event Listener for 'card' click
 $('.card').on('click', function() {
+  if (clickCounter === 0) {
+    startTimer();
+  };
   addMoves();
   showCard(this);
 });
@@ -30,8 +32,6 @@ $('.restart').on('click', function() {
   stopTimer();
   shuffleDeck();
   reset();
-  resetStars();
-  startTimer();
 });
 
 //* shuffle the list of cards using the provided "shuffle" method below
@@ -63,6 +63,8 @@ function reset() {
   $('.card').removeClass('open');
   $('.card').removeClass('show');
   $('.card').removeClass('match');
+  document.getElementById("seconds").innerText = ':00';
+  document.getElementById("minutes").innerText = '0';
   openedCards = [];
   clickCounter = 0;
   moveCounter = 0;
@@ -209,7 +211,6 @@ $('#yes').on('click', function() {
   resetStars();
   reset();
   shuffleDeck();
-  startTimer();
 });
 
 //if the user clicks no after a win

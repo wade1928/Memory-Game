@@ -30,6 +30,7 @@ $('.restart').on('click', function() {
   stopTimer();
   shuffleDeck();
   reset();
+  resetStars();
   startTimer();
 });
 

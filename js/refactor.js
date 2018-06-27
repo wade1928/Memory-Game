@@ -178,7 +178,6 @@ function enableClicks() {
 function checkWin() {
   if (matches === 8) {
     stopTimer();
-    getScore();
     displayModal();
   }
 };
@@ -190,6 +189,7 @@ function stopTimer() {
 
 //displays modal with score/time info after a win
 function displayModal() {
+  getScore();
   getStars();
   modal.style.display = "block";
   $('#time').text(minutes + ':' + seconds);
@@ -221,15 +221,15 @@ $('#no').on('click', function() {
 //check to see what score to display in the modal
 function getScore() {
   if (seconds > 45) {
-    score -= 10;
-  } else if (seconds === 40) {
-    score -= 10;
-  } else if (seconds === 35) {
-    score -= 10;
-  } else if (seconds === 30) {
+    score -= 40;
+  } else if (seconds > 40) {
+    score -= 30;
+  } else if (seconds > 35) {
+    score -= 20;
+  } else if (seconds > 30) {
     score -= 10;
   }
-}
+};
 
 //removes stars based on number of moves
 function checkStars() {
